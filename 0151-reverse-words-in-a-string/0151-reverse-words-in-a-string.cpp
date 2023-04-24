@@ -1,25 +1,25 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        stack<string> stak;
-        string str = "";
-        for(int i=0; i<s.size(); i++){
-            if(s[i]== ' '){
-                if(!str.empty())
-                    stak.push(str);
-                str = "";
+        stack<string> str;
+        string a = "";
+        for(int i=0;i<s.size();i++){
+            if(s[i]==' '){
+                if(!a.empty())
+                    str.push(a);
+                a ="";
             }
             else{
-                str += s[i];
+                a += s[i];
             }
         }
-        stak.push(str);
-        string ans = "";
-        while(!stak.empty()){
+        str.push(a);
+        string ans="";
+        while(!str.empty()){
             if(!ans.empty())
-                ans +=' ';
-            ans += stak.top();
-            stak.pop();
+                ans+=' ';
+            ans += str.top();  
+            str.pop();
         }
         return ans;
     }
