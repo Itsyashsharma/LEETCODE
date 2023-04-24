@@ -1,33 +1,55 @@
 class Solution {
 public:
-    string removeDuplicates(string s) {
-        stack<char> st;
-        for(int i=0;i<s.size();i++){
-            if(st.empty()){
-                st.push(s[i]);
-            }
-            else{
-            
-                if(!st.empty() && st.top()==s[i]){
-                    while(!st.empty() && st.top()==s[i]){
-                            st.pop();
-                            i++;
-                        }
-                        i--;
+    string removeDuplicates(string str) {
 
-                    }
-                    else{
-                        st.push(s[i]);
-                    }
-                }
-            }
-            string a="";
-            while(!st.empty()){
-                a+=st.top();
+        int n = str.size();
+
+        // declare a stack
+
+        stack<char> st;
+
+        // iterate over the string
+
+        for(int i = 0; i < n; i++)
+        {
+            // flag will keep track of that we have to push the curr char into stack or not
+
+            bool flag = true;
+
+            // if the curr char == st.top(), then remove the top char and mark flag as false
+
+            if(st.empty() == false && st.top() == str[i])
+            {
+                flag = false;
+
                 st.pop();
             }
-        reverse(a.begin(),a.end());
-        return a;
+
+            // if flag is true, push the curr char into stack
+
+            if(flag)
+            {
+                st.push(str[i]);
+            }
+        }
+
+        // finally form the res string
+
+        string res = "";
+
+        // pop out all the elements from the stack
+
+        while(!st.empty())
+        {
+            res += st.top();
+
+            st.pop();
+        }
+
+        // reverse the res
+
+        reverse(res.begin(), res.end());
+
+        return res;
     }
 };
-
