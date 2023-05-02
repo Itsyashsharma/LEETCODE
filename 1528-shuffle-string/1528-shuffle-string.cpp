@@ -1,11 +1,22 @@
 class Solution {
 public:
     string restoreString(string s, vector<int>& indices) {
-     //for assigning length of ans string we put the string s in the ans string.
-       string ans=s;
-        for(int i=0;i<s.length();i++)
+        int n=s.size();
+        string ans;
+        priority_queue<pair<int,char>>maxh;
+        for(int i=0;i<n;i++)
         {
-            ans[indices[i]]=s[i];
+            maxh.push({indices[i],s[i]});
+        }
+        while(maxh.size()!=0)
+        {
+            ans+=maxh.top().second;
+            maxh.pop();
+        }
+        int k=ans.length();
+        for(int i=0;i<k/2;i++)
+        {
+            swap(ans[i],ans[k-i-1]);
         }
         return ans;
     }
