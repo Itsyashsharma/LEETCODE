@@ -1,23 +1,14 @@
 class Solution {
 public:
     int differenceOfSum(vector<int>& nums) {
-        int elementSum=0;
-        int digitSum =0;
-        for(int i=0;i<nums.size();i++){
-            elementSum += nums[i];
-            if(nums[i]>9){
-                int a= nums[i];
-                while(a>0){
-                    digitSum = digitSum + (a%10);
-                    a=a/10;
-                }
-            }
-            else{
-                digitSum+=nums[i];
+        int es=0,ds=0;
+        for(auto i:nums){
+            es+=i;
+            while(i){
+                ds+=i%10;
+                i/=10;
             }
         }
-        int ans =0;
-        ans=abs(elementSum-digitSum);
-        return ans;
+        return abs(es-ds);
     }
 };
