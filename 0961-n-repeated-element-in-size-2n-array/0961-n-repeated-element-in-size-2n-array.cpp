@@ -1,27 +1,15 @@
 class Solution {
 public:
     int repeatedNTimes(vector<int>& nums) {
-
-    int n=nums.size()/2;   
-    int ans=0; 
-    for (int i = 0; i < 2 * n - 1; i++)
-    {
-        int count = 1;
-        for (int j = i + 1; j < 2 * n; j++)
-        {
-            if (nums[i] == nums[j])
-            {
-                count++;
-            }
+        int n = nums.size();
+        map<int,int> mp;
+        for(int i=0; i<n; i++) {
+            mp[nums[i]]++;
         }
-        if (count == n)
-        {
-            ans=nums[i];
-            break;
+        for(auto it: mp) {
+            if(it.second >= n/2)
+                return it.first;
         }
-    }
-    return ans;
-
-
+        return -1;
     }
 };
